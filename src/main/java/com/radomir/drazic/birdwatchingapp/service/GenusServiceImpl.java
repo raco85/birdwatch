@@ -7,11 +7,11 @@ import com.radomir.drazic.birdwatchingapp.mapper.GenusMapper;
 import com.radomir.drazic.birdwatchingapp.repository.GenusRepository;
 import java.util.List;
 import java.util.stream.Collectors;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class GenusServiceImpl implements IGenusService{
 
   private final GenusRepository repository;

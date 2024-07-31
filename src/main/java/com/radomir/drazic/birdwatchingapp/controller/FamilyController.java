@@ -1,4 +1,4 @@
-package com.radomir.drazic.birdwatchingapp.controler;
+package com.radomir.drazic.birdwatchingapp.controller;
 
 import com.radomir.drazic.birdwatchingapp.dto.CreateFamilyRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.FamilyDto;

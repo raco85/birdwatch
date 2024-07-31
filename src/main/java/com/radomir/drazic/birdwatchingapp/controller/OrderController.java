@@ -1,4 +1,4 @@
-package com.radomir.drazic.birdwatchingapp.controler;
+package com.radomir.drazic.birdwatchingapp.controller;
 
 import com.radomir.drazic.birdwatchingapp.dto.CreateOrderRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.OrderToSaveDto;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class OrderController {
 
-  private IOrderService service;
+  private final IOrderService service;
 
   @GetMapping
   public ResponseEntity<List<OrderToSaveDto>> getAllOrders() {

@@ -13,6 +13,5 @@ public interface OrderMapper {
   @Mapping(target = "orderId", ignore = true)
   @Mapping(target = "families", ignore = true)
   Order toEntityFromCreateOrderRequestDto(CreateOrderRequestDto orderRequestDto);
-
   OrderToSaveDto toOrderToSaveDto(Order order);
 }

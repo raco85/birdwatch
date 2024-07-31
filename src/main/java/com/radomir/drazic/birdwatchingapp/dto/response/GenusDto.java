@@ -1,7 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.dto.response;
 
-public record OrderToSaveDto(
-    Long orderId,
+public record GenusDto(
     String name,
     String latinName
 ) {}

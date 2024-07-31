@@ -32,5 +32,4 @@ public class Family {
   private Order order;
   @OneToMany(mappedBy = "family", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   private List<Genus> geneses;
-
 }

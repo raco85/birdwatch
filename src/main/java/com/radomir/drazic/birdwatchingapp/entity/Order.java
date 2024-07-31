@@ -27,5 +27,4 @@ public class Order {
   private String latinName;
   @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   private List<Family> families;
-
 }

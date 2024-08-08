@@ -3,17 +3,21 @@ package com.radomir.drazic.birdwatchingapp.service;
 import com.radomir.drazic.birdwatchingapp.dto.CreateGenusRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.GenusDto;
 import com.radomir.drazic.birdwatchingapp.entity.Genus;
+import com.radomir.drazic.birdwatchingapp.exception.ResourceNotFoundException;
 import com.radomir.drazic.birdwatchingapp.mapper.GenusMapper;
 import com.radomir.drazic.birdwatchingapp.repository.GenusRepository;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class GenusServiceImpl implements IGenusService{
-
+  private static final Logger logger = LoggerFactory.getLogger(GenusServiceImpl.class);
   private final GenusRepository repository;
   private final GenusMapper mapper;
 
@@ -26,7 +30,7 @@ public class GenusServiceImpl implements IGenusService{
 
   @Override
   public GenusDto getGenusById(Long id) {
-    Genus genus = repository.findById(id).orElseThrow();
+    Genus genus = findGenusById(id);
     return mapper.toGenesesDto(genus);
   }
 
@@ -39,7 +43,7 @@ public class GenusServiceImpl implements IGenusService{
 
   @Override
   public GenusDto updateGenus(Long id, CreateGenusRequestDto genusRequestDto) {
-    Genus genusToUpdate = repository.findById(id).orElseThrow();
+    Genus genusToUpdate = findGenusById(id);
     genusToUpdate.setName(genusRequestDto.name());
     genusToUpdate.setLatinName(genusRequestDto.latinName());
     Genus updatedGenus = repository.save(genusToUpdate);
@@ -47,7 +51,18 @@ public class GenusServiceImpl implements IGenusService{
   }
 
   @Override
+  @Transactional
   public void deleteGenus(Long id) {
+    findGenusById(id);
     repository.deleteById(id);
+  }
+
+  private Genus findGenusById(Long id) {
+    return repository.findById(id).orElseThrow(
+        () -> {
+          logger.info("Genus with an id {} not found!", id);
+          return new ResourceNotFoundException("Genus with id " + id + " not found!");
+        }
+    );
   }
 }

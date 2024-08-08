@@ -3,17 +3,21 @@ package com.radomir.drazic.birdwatchingapp.service;
 import com.radomir.drazic.birdwatchingapp.dto.CreateSpeciesRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.SpeciesDto;
 import com.radomir.drazic.birdwatchingapp.entity.Species;
+import com.radomir.drazic.birdwatchingapp.exception.ResourceNotFoundException;
 import com.radomir.drazic.birdwatchingapp.mapper.SpeciesMapper;
 import com.radomir.drazic.birdwatchingapp.repository.SpeciesRepository;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class SpeciesServiceImpl implements ISpeciesService {
-
+  private static final Logger logger = LoggerFactory.getLogger(SpeciesServiceImpl.class);
   private final SpeciesRepository repository;
   private final SpeciesMapper mapper;
 
@@ -25,7 +29,7 @@ public class SpeciesServiceImpl implements ISpeciesService {
 
   @Override
   public SpeciesDto getSpeciesById(Long id) {
-    Species species = repository.findById(id).orElseThrow();
+    Species species = findSpeciesById(id);
     return mapper.toSpeciesDto(species);
   }
 
@@ -38,7 +42,7 @@ public class SpeciesServiceImpl implements ISpeciesService {
 
   @Override
   public SpeciesDto updateSpecies(Long id, CreateSpeciesRequestDto speciesRequestDto) {
-    Species species = repository.findById(id).orElseThrow();
+    Species species = findSpeciesById(id);
     species.setName(speciesRequestDto.name());
     species.setLatinName(speciesRequestDto.latinName());
     Species updatedSpecies = repository.save(species);
@@ -46,7 +50,18 @@ public class SpeciesServiceImpl implements ISpeciesService {
   }
 
   @Override
+  @Transactional
   public void deleteSpeciesById(Long id) {
+    findSpeciesById(id);
     repository.deleteById(id);
+  }
+
+  private Species findSpeciesById(Long id) {
+    return repository.findById(id).orElseThrow(
+        () -> {
+          logger.info("Species with an id {} not found!", id);
+          return new ResourceNotFoundException("Species with id " + id + " not found!");
+        }
+    );
   }
 }

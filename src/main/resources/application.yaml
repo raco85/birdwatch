@@ -4,12 +4,11 @@ server:
     context-path: /birds/api/v1
 spring:
   datasource:
-    url: jdbc:h2:mem:birds
-    username: rd
-    password:
-    driverClassName: org.h2.Driver
-  h2:
-    console.enabled: true
+    url: jdbc:postgresql://localhost:5432/BIRD
+    driver.class-name: org.postgresql.Driver
+    username: postgres
+    password: admin
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.PostgreSQLDialect

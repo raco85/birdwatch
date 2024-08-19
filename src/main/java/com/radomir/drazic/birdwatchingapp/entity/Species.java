@@ -25,7 +25,7 @@ public class Species {
   private Long speciesId;
   private String name;
   private String latinName;
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
   @JoinColumn(name = "genus_id")
   private Genus genus;
 }

@@ -2,5 +2,6 @@ package com.radomir.drazic.birdwatchingapp.dto;
 
 public record CreateFamilyRequestDto(
     String name,
-    String latinName
+    String latinName,
+    Long orderId
 ) {}

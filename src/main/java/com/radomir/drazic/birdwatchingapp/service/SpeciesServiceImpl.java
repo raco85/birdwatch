@@ -2,9 +2,11 @@ package com.radomir.drazic.birdwatchingapp.service;
 
 import com.radomir.drazic.birdwatchingapp.dto.CreateSpeciesRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.SpeciesDto;
+import com.radomir.drazic.birdwatchingapp.entity.Genus;
 import com.radomir.drazic.birdwatchingapp.entity.Species;
 import com.radomir.drazic.birdwatchingapp.exception.ResourceNotFoundException;
 import com.radomir.drazic.birdwatchingapp.mapper.SpeciesMapper;
+import com.radomir.drazic.birdwatchingapp.repository.GenusRepository;
 import com.radomir.drazic.birdwatchingapp.repository.SpeciesRepository;
 import jakarta.transaction.Transactional;
 import java.util.List;
@@ -19,6 +21,7 @@ import org.springframework.stereotype.Service;
 public class SpeciesServiceImpl implements ISpeciesService {
   private static final Logger logger = LoggerFactory.getLogger(SpeciesServiceImpl.class);
   private final SpeciesRepository repository;
+  private final GenusRepository genusRepository;
   private final SpeciesMapper mapper;
 
   @Override
@@ -36,15 +39,20 @@ public class SpeciesServiceImpl implements ISpeciesService {
   @Override
   public SpeciesDto createSpecies(CreateSpeciesRequestDto speciesRequestDto) {
     Species speciesToSave = mapper.toEntityFromCreateSpeciesRequestDto(speciesRequestDto);
+    Genus genus = findGenusById(speciesRequestDto.genusId());
     Species savedSpecies = repository.save(speciesToSave);
+    savedSpecies.setGenus(genus);
+    logger.info("Saved species is: {}", savedSpecies);
     return mapper.toSpeciesDto(savedSpecies);
   }
 
   @Override
   public SpeciesDto updateSpecies(Long id, CreateSpeciesRequestDto speciesRequestDto) {
     Species species = findSpeciesById(id);
+    Genus genus = findGenusById(speciesRequestDto.genusId());
     species.setName(speciesRequestDto.name());
     species.setLatinName(speciesRequestDto.latinName());
+    species.setGenus(genus);
     Species updatedSpecies = repository.save(species);
     return mapper.toSpeciesDto(updatedSpecies);
   }
@@ -61,6 +69,15 @@ public class SpeciesServiceImpl implements ISpeciesService {
         () -> {
           logger.info("Species with an id {} not found!", id);
           return new ResourceNotFoundException("Species with id " + id + " not found!");
+        }
+    );
+  }
+
+  private Genus findGenusById(Long id) {
+    return genusRepository.findById(id).orElseThrow(
+        () -> {
+          logger.info("Genus with an id {} not found!", id);
+          return new ResourceNotFoundException("Genus with id " + id + " not found!");
         }
     );
   }

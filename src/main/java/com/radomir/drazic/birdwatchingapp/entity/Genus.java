@@ -27,9 +27,9 @@ public class Genus {
   private Long genusId;
   private String name;
   private String latinName;
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
   @JoinColumn(name = "family_id")
   private Family family;
-  @OneToMany(mappedBy = "genus", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "genus", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.REFRESH)
   private List<Species> species;
 }

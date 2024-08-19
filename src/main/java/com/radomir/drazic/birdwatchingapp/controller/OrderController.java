@@ -1,7 +1,7 @@
 package com.radomir.drazic.birdwatchingapp.controller;
 
 import com.radomir.drazic.birdwatchingapp.dto.CreateOrderRequestDto;
-import com.radomir.drazic.birdwatchingapp.dto.response.OrderToSaveDto;
+import com.radomir.drazic.birdwatchingapp.dto.response.OrderDto;
 import com.radomir.drazic.birdwatchingapp.service.IOrderService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -24,25 +24,25 @@ public class OrderController {
   private final IOrderService service;
 
   @GetMapping
-  public ResponseEntity<List<OrderToSaveDto>> getAllOrders() {
+  public ResponseEntity<List<OrderDto>> getAllOrders() {
     return ResponseEntity.status(HttpStatus.OK).body(service.getAllOrders());
   }
 
   @PostMapping
-  public ResponseEntity<OrderToSaveDto> createOrder(@RequestBody CreateOrderRequestDto orderRequest){
-    OrderToSaveDto orderToSave = service.createOrder(orderRequest);
+  public ResponseEntity<OrderDto> createOrder(@RequestBody CreateOrderRequestDto orderRequest){
+    OrderDto orderToSave = service.createOrder(orderRequest);
     return ResponseEntity.status(HttpStatus.CREATED).body(orderToSave);
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<OrderToSaveDto> getOrderById(@PathVariable Long id) {
-    OrderToSaveDto order = service.getOrderById(id);
+  public ResponseEntity<OrderDto> getOrderById(@PathVariable Long id) {
+    OrderDto order = service.getOrderById(id);
     return ResponseEntity.status(HttpStatus.OK).body(order);
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<OrderToSaveDto> updateOrder(@PathVariable Long id, @RequestBody CreateOrderRequestDto orderRequest) {
-    OrderToSaveDto orderToSave = service.updateOrder(id, orderRequest);
+  public ResponseEntity<OrderDto> updateOrder(@PathVariable Long id, @RequestBody CreateOrderRequestDto orderRequest) {
+    OrderDto orderToSave = service.updateOrder(id, orderRequest);
     return ResponseEntity.status(HttpStatus.OK).body(orderToSave);
   }
 

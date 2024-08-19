@@ -1,7 +1,7 @@
 package com.radomir.drazic.birdwatchingapp.service;
 
 import com.radomir.drazic.birdwatchingapp.dto.CreateOrderRequestDto;
-import com.radomir.drazic.birdwatchingapp.dto.response.OrderToSaveDto;
+import com.radomir.drazic.birdwatchingapp.dto.response.OrderDto;
 import com.radomir.drazic.birdwatchingapp.entity.Order;
 import com.radomir.drazic.birdwatchingapp.exception.ResourceNotFoundException;
 import com.radomir.drazic.birdwatchingapp.mapper.OrderMapper;
@@ -22,32 +22,32 @@ public class OrderServiceImpl implements IOrderService {
   private final OrderMapper mapper;
 
   @Override
-  public OrderToSaveDto createOrder(CreateOrderRequestDto orderRequestDto) {
+  public OrderDto createOrder(CreateOrderRequestDto orderRequestDto) {
     Order orderToSave = mapper.toEntityFromCreateOrderRequestDto(orderRequestDto);
     Order savedOrder = repository.save(orderToSave);
-    return mapper.toOrderToSaveDto(savedOrder);
+    return mapper.toOrderDto(savedOrder);
   }
 
   @Override
-  public List<OrderToSaveDto> getAllOrders() {
+  public List<OrderDto> getAllOrders() {
     List<Order> orders = repository.findAll();
-    return orders.stream().map(mapper::toOrderToSaveDto).collect(
+    return orders.stream().map(mapper::toOrderDto).collect(
         Collectors.toList());
   }
 
   @Override
-  public OrderToSaveDto getOrderById(Long id) {
+  public OrderDto getOrderById(Long id) {
     Order order = findOrderById(id);
-    return mapper.toOrderToSaveDto(order);
+    return mapper.toOrderDto(order);
   }
 
   @Override
-  public OrderToSaveDto updateOrder(Long id, CreateOrderRequestDto orderRequest) {
+  public OrderDto updateOrder(Long id, CreateOrderRequestDto orderRequest) {
     Order order = findOrderById(id);
     order.setName(orderRequest.name());
     order.setLatinName(orderRequest.latinName());
     Order updatedOrder = repository.save(order);
-    return mapper.toOrderToSaveDto(updatedOrder);
+    return mapper.toOrderDto(updatedOrder);
   }
 
   @Override

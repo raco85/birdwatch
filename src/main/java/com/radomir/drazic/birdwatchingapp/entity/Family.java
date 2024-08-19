@@ -27,9 +27,9 @@ public class Family {
   private Long familyId;
   private String name;
   private String latinName;
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
   @JoinColumn(name = "order_id")
   private Order order;
-  @OneToMany(mappedBy = "family", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "family", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.REFRESH)
   private List<Genus> geneses;
 }

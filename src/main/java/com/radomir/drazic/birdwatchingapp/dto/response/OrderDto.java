@@ -1,10 +1,11 @@
 package com.radomir.drazic.birdwatchingapp.dto.response;
 
 import java.util.List;
+import lombok.Builder;
 
-public record FamilyDto(
+@Builder
+public record OrderDto(
     String name,
     String latinName,
-    OrderPartialDTO order,
-    List<GenusPartialDTO> geneses
+    List<FamilyPartialDTO> families
 ) {}

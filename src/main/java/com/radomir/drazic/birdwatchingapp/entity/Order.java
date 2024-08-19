@@ -25,6 +25,6 @@ public class Order {
   private Long orderId;
   private String name;
   private String latinName;
-  @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "order", fetch = FetchType.LAZY,  orphanRemoval = true, cascade = CascadeType.REFRESH)
   private List<Family> families;
 }

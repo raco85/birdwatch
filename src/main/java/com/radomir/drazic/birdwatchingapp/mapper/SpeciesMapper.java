@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring", imports = {Collection.class})
 public interface SpeciesMapper {
   SpeciesDto toSpeciesDto(Species species);
-
   @Mapping(target = "speciesId", ignore = true)
+  @Mapping(target = "genus.genusId", source = "genusId")
   Species toEntityFromCreateSpeciesRequestDto(CreateSpeciesRequestDto speciesRequestDto);
 }

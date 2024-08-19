@@ -7,11 +7,11 @@ import java.util.Collection;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring", imports = {Collection.class})
+@Mapper(componentModel = "spring", imports = {Collection.class}, uses = {GenusMapper.class})
 public interface FamilyMapper {
-
   FamilyDto toFamilyDto(Family family);
   @Mapping(target = "familyId", ignore = true)
   @Mapping(target = "geneses", ignore = true)
+  @Mapping(target = "order.orderId", source = "orderId")
   Family toEntityFromCreateFamilyRequestDto(CreateFamilyRequestDto familyRequestDto);
 }

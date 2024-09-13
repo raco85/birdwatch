@@ -2,7 +2,6 @@ package com.radomir.drazic.birdwatchingapp.controller;
 
 import com.radomir.drazic.birdwatchingapp.dto.CreateSpeciesRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.SpeciesDto;
-import com.radomir.drazic.birdwatchingapp.entity.Species;
 import com.radomir.drazic.birdwatchingapp.service.ISpeciesService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/species")
@@ -35,6 +35,38 @@ public class SpeciesController {
   public ResponseEntity<SpeciesDto> getSpeciesById(@PathVariable Long id) {
     SpeciesDto species = service.getSpeciesById(id);
 
+    return ResponseEntity.status(HttpStatus.OK).body(species);
+  }
+
+  @GetMapping("/name")
+  public ResponseEntity<List<SpeciesDto>> getSpeciesByName(@RequestParam String name) {
+    List<SpeciesDto> species = service.getSpeciesByName(name);
+
+    return ResponseEntity.status(HttpStatus.OK).body(species);
+  }
+
+  @GetMapping("/latinName")
+  public ResponseEntity<List<SpeciesDto>> getSpeciesByLatinName(@RequestParam String latinName) {
+    List<SpeciesDto> species = service.getSpeciesByLatinName(latinName);
+
+    return ResponseEntity.status(HttpStatus.OK).body(species);
+  }
+
+  @GetMapping("/genus/{genusId}")
+  public ResponseEntity<List<SpeciesDto>> getSpeciesByGenusId(@PathVariable Long genusId) {
+    List<SpeciesDto> species = service.getAllSpeciesByGenusId(genusId);
+    return ResponseEntity.status(HttpStatus.OK).body(species);
+  }
+
+  @GetMapping("/family/{familyId}")
+  public ResponseEntity<List<SpeciesDto>> getSpeciesByFamilyId(@PathVariable Long familyId) {
+    List<SpeciesDto> species = service.getAllSpeciesByFamilyId(familyId);
+    return ResponseEntity.status(HttpStatus.OK).body(species);
+  }
+
+  @GetMapping("/order/{orderId}")
+  public ResponseEntity<List<SpeciesDto>> getSpeciesByOrderId(@PathVariable Long orderId) {
+    List<SpeciesDto> species = service.getAllSpeciesByOrderId(orderId);
     return ResponseEntity.status(HttpStatus.OK).body(species);
   }
 

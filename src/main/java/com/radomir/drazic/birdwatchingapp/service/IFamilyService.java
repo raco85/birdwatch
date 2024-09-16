@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 public interface IFamilyService {
   List<FamilyDto> getAllFamilies();
   FamilyDto getFamilyById(Long id);
+  List<FamilyDto> getFamiliesByName(String name);
+  List<FamilyDto> getFamiliesByLatinName(String latinName);
+  List<FamilyDto> getAllFamiliesByOrderId(Long orderId);
   FamilyDto createFamily(CreateFamilyRequestDto familyRequestDto);
   FamilyDto updateFamily(Long id, CreateFamilyRequestDto familyRequestDto);
   void deleteFamily(Long id);

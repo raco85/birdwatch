@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -34,6 +35,27 @@ public class FamilyController {
     FamilyDto familyDto = service.getFamilyById(id);
 
     return ResponseEntity.status(HttpStatus.OK).body(familyDto);
+  }
+
+  @GetMapping("/name")
+  public ResponseEntity<List<FamilyDto>> getFamiliesByName(@RequestParam String name) {
+    List<FamilyDto> families = service.getFamiliesByName(name);
+
+    return ResponseEntity.status(HttpStatus.OK).body(families);
+  }
+
+  @GetMapping("/latinName")
+  public ResponseEntity<List<FamilyDto>> getFamiliesByLatinName(@RequestParam String latinName) {
+    List<FamilyDto> families = service.getFamiliesByLatinName(latinName);
+
+    return ResponseEntity.status(HttpStatus.OK).body(families);
+  }
+
+  @GetMapping("/order/{orderId}")
+  public ResponseEntity<List<FamilyDto>> getFamiliesByOrderId(@PathVariable Long orderId) {
+    List<FamilyDto> families = service.getAllFamiliesByOrderId(orderId);
+
+    return ResponseEntity.status(HttpStatus.OK).body(families);
   }
 
   @PostMapping

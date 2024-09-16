@@ -36,6 +36,27 @@ public class FamilyServiceImpl implements IFamilyService{
   }
 
   @Override
+  public List<FamilyDto> getFamiliesByName(String name) {
+    List<Family> families = repository.findFamiliesByName(name);
+    return families.stream().map(mapper::toFamilyDto).collect(Collectors.toList());
+  }
+
+  @Override
+  public List<FamilyDto> getFamiliesByLatinName(String latinName) {
+    List<Family> families = repository.findFamiliesByLatinName(latinName);
+    return families.stream().map(mapper::toFamilyDto).collect(Collectors.toList());
+  }
+
+  @Override
+  public List<FamilyDto> getAllFamiliesByOrderId(Long orderId) {
+    Order order = findOrderById(orderId);
+    List<Family> families = repository.findAllByOrderOrderId(orderId);
+    if(families.isEmpty())
+      logger.info("There's not families for {} order", order.getName());
+    return families.stream().map(mapper::toFamilyDto).collect(Collectors.toList());
+  }
+
+  @Override
   public FamilyDto createFamily(CreateFamilyRequestDto familyRequestDto) {
     Family familyToSave = mapper.toEntityFromCreateFamilyRequestDto(familyRequestDto);
     Order order = findOrderById(familyRequestDto.orderId());

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -38,6 +39,20 @@ public class OrderController {
   public ResponseEntity<OrderDto> getOrderById(@PathVariable Long id) {
     OrderDto order = service.getOrderById(id);
     return ResponseEntity.status(HttpStatus.OK).body(order);
+  }
+
+  @GetMapping("/name")
+  public ResponseEntity<List<OrderDto>> getOrdersByName(@RequestParam String name) {
+    List<OrderDto> orders = service.getOrdersByName(name);
+
+    return ResponseEntity.status(HttpStatus.OK).body(orders);
+  }
+
+  @GetMapping("/latinName")
+  public ResponseEntity<List<OrderDto>> getOrdersByLatinName(@RequestParam String latinName) {
+    List<OrderDto> orders = service.getOrdersByLatinName(latinName);
+
+    return ResponseEntity.status(HttpStatus.OK).body(orders);
   }
 
   @PutMapping("/{id}")

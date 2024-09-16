@@ -42,6 +42,18 @@ public class OrderServiceImpl implements IOrderService {
   }
 
   @Override
+  public List<OrderDto> getOrdersByName(String name) {
+    List<Order> orders = repository.findOrdersByName(name);
+    return orders.stream().map(mapper::toOrderDto).collect(Collectors.toList());
+  }
+
+  @Override
+  public List<OrderDto> getOrdersByLatinName(String latinName) {
+    List<Order> orders = repository.findOrdersByLatinName(latinName);
+    return orders.stream().map(mapper::toOrderDto).collect(Collectors.toList());
+  }
+
+  @Override
   public OrderDto updateOrder(Long id, CreateOrderRequestDto orderRequest) {
     Order order = findOrderById(id);
     order.setName(orderRequest.name());

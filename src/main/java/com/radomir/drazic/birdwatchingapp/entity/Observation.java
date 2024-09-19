@@ -9,9 +9,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.util.List;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,18 +22,20 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Species {
-
+public class Observation {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long speciesId;
+  private Long observationId;
   @Column
-  private String name;
+  private Double longitude;
   @Column
-  private String latinName;
+  private Double latitude;
+  @Column
+  private Date date;
   @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-  @JoinColumn(name = "genus_id")
-  private Genus genus;
-  @OneToMany(mappedBy = "species", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.REFRESH)
-  private List<Observation> observations;
+  @JoinColumn(name = "user_id")
+  private User observer;
+  @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+  @JoinColumn(name = "species_id")
+  private Species species;
 }

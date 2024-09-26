@@ -1,0 +1,15 @@
+services:
+  bird-postgresdb:
+    container_name: birds-postgresdb
+    image: postgres:latest
+    volumes:
+      - local-deployment_birds-postgres-data:/var/lib/docker/volumes/local-deployment_bird-postgres-data/_data
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_PASSWORD: BIRD_PWD
+      POSTGRES_DB: BIRDdb
+      POSTGRES_USER: BIRD
+
+volumes:
+  local-deployment_birds-postgres-data:

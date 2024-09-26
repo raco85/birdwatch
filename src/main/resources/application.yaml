@@ -4,10 +4,10 @@ server:
     context-path: /birds/api/v1
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/BIRD
+    url: jdbc:postgresql://localhost:5433/BIRDdb
     driver.class-name: org.postgresql.Driver
-    username: postgres
-    password: admin
+    username: BIRD
+    password: BIRD_PWD
   jpa:
     hibernate:
       ddl-auto: update

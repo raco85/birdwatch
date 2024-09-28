@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: load-data-family
+      author: radrazic
+      changes:
+        - loadData:
+            tableName: family
+            usePreparedStatements: false
+            separator: ;
+            relativeToChangelogFile: true
+            file: data/family.csv
+            encoding: UTF-8
+            primaryKey: family_id

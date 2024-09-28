@@ -1,0 +1,143 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001
+      author: radrazic
+      changes:
+        - createTable:
+            tableName: orders
+            columns:
+              - column:
+                  name: order_id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(45)
+              - column:
+                  name: latin_name
+                  type: VARCHAR(45)
+        - createTable:
+            tableName: family
+            columns:
+              - column:
+                  name: family_id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(45)
+              - column:
+                  name: latin_name
+                  type: VARCHAR(45)
+              - column:
+                  name: order_id
+                  type: BIGINT
+        - createTable:
+            tableName: genus
+            columns:
+              - column:
+                  name: genus_id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(45)
+              - column:
+                  name: latin_name
+                  type: VARCHAR(45)
+              - column:
+                  name: family_id
+                  type: BIGINT
+        - createTable:
+            tableName: species
+            columns:
+              - column:
+                  name: species_id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(45)
+              - column:
+                  name: latin_name
+                  type: VARCHAR(45)
+              - column:
+                  name: genus_id
+                  type: BIGINT
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: username
+                  type: VARCHAR(45)
+              - column:
+                  name: password
+                  type: VARCHAR(90)
+        - createTable:
+            tableName: observation
+            columns:
+              - column:
+                  name: observation_id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: longitude
+                  type: DOUBLE
+              - column:
+                  name: latitude
+                  type: DOUBLE
+              - column:
+                  name: date
+                  type: TIMESTAMP
+              - column:
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: species_id
+                  type: BIGINT
+        - addForeignKeyConstraint:
+            baseTableName: family
+            baseColumnNames: order_id
+            referencedTableName: orders
+            referencedColumnNames: order_id
+            constraintName: FK_Family_Order
+        - addForeignKeyConstraint:
+            baseTableName: genus
+            baseColumnNames: family_id
+            referencedTableName: family
+            referencedColumnNames: family_id
+            constraintName: FK_Genus_Family
+        - addForeignKeyConstraint:
+            baseTableName: species
+            baseColumnNames: genus_id
+            referencedTableName: genus
+            referencedColumnNames: genus_id
+            constraintName: FK_Species_Genus
+        - addForeignKeyConstraint:
+            baseTableName: observation
+            baseColumnNames: id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: FK_Observation_Users
+        - addForeignKeyConstraint:
+            baseTableName: observation
+            baseColumnNames: species_id
+            referencedTableName: species
+            referencedColumnNames: species_id
+            constraintName: FK_Observation_Species

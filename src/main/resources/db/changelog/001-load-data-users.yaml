@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: load-data-users
+      author: radrazic
+      changes:
+        - loadData:
+            tableName: users
+            usePreparedStatements: false
+            separator: ;
+            relativeToChangelogFile: true
+            file: data/users.csv
+            encoding: UTF-8
+            primaryKey: id

@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: load-data-orders
+      author: radrazic
+      changes:
+        - loadData:
+            tableName: orders
+            usePreparedStatements: false
+            separator: ;
+            relativeToChangelogFile: true
+            file: data/orders.csv
+            encoding: UTF-8
+            primaryKey: order_id

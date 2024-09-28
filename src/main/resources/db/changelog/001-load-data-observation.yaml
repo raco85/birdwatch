@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: load-data-observation
+      author: radrazic
+      changes:
+        - loadData:
+            tableName: observation
+            usePreparedStatements: false
+            separator: ;
+            relativeToChangelogFile: true
+            file: data/observations.csv
+            encoding: UTF-8
+            primaryKey: observation_id

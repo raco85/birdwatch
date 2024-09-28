@@ -3,6 +3,8 @@ server:
   servlet:
     context-path: /birds/api/v1
 spring:
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
   datasource:
     url: jdbc:postgresql://localhost:5433/BIRDdb
     driver.class-name: org.postgresql.Driver

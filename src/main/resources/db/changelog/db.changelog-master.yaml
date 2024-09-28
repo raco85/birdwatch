@@ -1,0 +1,22 @@
+databaseChangeLog:
+    - include:
+        file: 001-create-schema.yaml
+        relativeToChangelogFile: true
+    - include:
+        file: 001-load-data-orders.yaml
+        relativeToChangelogFile: true
+    - include:
+        file: 001-load-data-family.yaml
+        relativeToChangelogFile: true
+    - include:
+          file: 001-load-data-genus.yaml
+          relativeToChangelogFile: true
+    - include:
+          file: 001-load-data-species.yaml
+          relativeToChangelogFile: true
+    - include:
+          file: 001-load-data-users.yaml
+          relativeToChangelogFile: true
+    - include:
+          file: 001-load-data-observation.yaml
+          relativeToChangelogFile: true

@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: load-data-genus
+      author: radrazic
+      changes:
+        - loadData:
+            tableName: genus
+            usePreparedStatements: false
+            separator: ;
+            relativeToChangelogFile: true
+            file: data/genus.csv
+            encoding: UTF-8
+            primaryKey: genus_id

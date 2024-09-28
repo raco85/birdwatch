@@ -33,7 +33,7 @@ public class Observation {
   @Column
   private Date date;
   @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-  @JoinColumn(name = "user_id")
+  @JoinColumn(name = "id")
   private User observer;
   @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
   @JoinColumn(name = "species_id")

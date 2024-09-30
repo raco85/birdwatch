@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -16,14 +16,16 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
-  @Autowired
-  private UserDetailsService userDetailsService;
+
+  private final UserDetailsService userDetailsService;
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     return http.csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(request -> request.requestMatchers(
+            "/register",
                 "/v3/api-docs/**",
                 "/swagger-ui/**").permitAll()
                 .anyRequest().authenticated())

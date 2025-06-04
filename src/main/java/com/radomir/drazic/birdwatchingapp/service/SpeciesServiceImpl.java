@@ -86,7 +86,7 @@ public class SpeciesServiceImpl implements ISpeciesService {
     Genus genus = findGenusById(speciesRequestDto.genusId());
     Species savedSpecies = repository.save(speciesToSave);
     savedSpecies.setGenus(genus);
-    logger.info("Saved species is: {}", savedSpecies);
+    logger.info("Saved species is: {}", savedSpecies.getName());
     return mapper.toSpeciesDto(savedSpecies);
   }
 

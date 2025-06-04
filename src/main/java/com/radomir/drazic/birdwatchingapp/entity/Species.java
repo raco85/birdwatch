@@ -32,6 +32,8 @@ public class Species {
   private String name;
   @Column
   private String latinName;
+  @Column
+  private String image;
   @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
   @JoinColumn(name = "genus_id")
   private Genus genus;

@@ -3,5 +3,6 @@ package com.radomir.drazic.birdwatchingapp.dto;
 public record CreateSpeciesRequestDto(
     String name,
     String latinName,
-    Long genusId
+    Long genusId,
+    String image
 ) {}

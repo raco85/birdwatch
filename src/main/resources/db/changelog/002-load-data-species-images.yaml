@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: load-data-species
+      author: radrazic
+      changes:
+        - loadUpdateData:
+            tableName: species
+            usePreparedStatements: false
+            separator: ;
+            relativeToChangelogFile: true
+            file: data/species-02.csv
+            encoding: UTF-8
+            primaryKey: species_id

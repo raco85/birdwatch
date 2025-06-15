@@ -11,7 +11,7 @@ services:
       - birds-postgresdb
 
   birds-postgresdb:
-    container_name: birds-postgresdb
+    container_name: birds-postgresdbbe
     image: postgres:latest
     volumes:
       - local-deployment_birds-postgres-data:/var/lib/docker/volumes/local-deployment_bird-postgres-data/_data

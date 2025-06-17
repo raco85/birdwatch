@@ -1,4 +1,4 @@
-package com.radomir.drazic.birdwatchingapp.entity;
+package com.radomir.drazic.birdwatchingapp.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,7 @@
 package com.radomir.drazic.birdwatchingapp.service;
 
 import com.radomir.drazic.birdwatchingapp.dto.CreateObservationRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.ObservationRadiusFilterRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.ObservationDto;
 import com.radomir.drazic.birdwatchingapp.entity.Observation;
 import com.radomir.drazic.birdwatchingapp.entity.Species;
@@ -54,6 +55,17 @@ public class ObservationServiceImpl implements IObservationService{
   }
 
   @Override
+  public List<ObservationDto> getAllObservationsByRadius(ObservationRadiusFilterRequestDto radiusFilterRequestDto) {
+    List<Observation> observations = repository.findAll();
+
+    List<ObservationDto> observationDtos = observations.stream().filter(observation ->
+            haversineFormula(observation.getLatitude(), observation.getLongitude(),
+                    radiusFilterRequestDto.latitude(), radiusFilterRequestDto.longitude()) <= radiusFilterRequestDto.distance()
+    ).map(mapper::toObservationDto).toList();
+      return observationDtos;
+  }
+
+  @Override
   public ObservationDto createObservation(CreateObservationRequestDto observationRequestDto) {
     Observation observationToSave = mapper
         .toEntityFromCreateObservationRequestDto(observationRequestDto);
@@ -98,5 +110,21 @@ public class ObservationServiceImpl implements IObservationService{
           return new ResourceNotFoundException("Species with an id " + id + " not found");
         }
     );
+  }
+
+  private Double haversineFormula(Double latObs, Double lonObs, Double latCenter, Double lonCenter) {
+
+    double latObsRadians = Math.toRadians(latObs);
+    Double lonObsRadians = Math.toRadians(lonObs);
+    Long EARTH_RADIUS = 6371L;
+    double latCenterRadians = Math.toRadians(latCenter);
+    Double lonCenterRadians = Math.toRadians(lonCenter);
+
+    double a = Math.pow(Math.sin((latCenterRadians -latObsRadians)/2), 2) + Math.cos(latObsRadians) * Math.cos(latCenterRadians)
+            * Math.pow(Math.sin((lonCenterRadians - lonObsRadians)/2), 2);
+
+    Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+    return EARTH_RADIUS * c;
   }
 }

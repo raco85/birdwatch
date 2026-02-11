@@ -1,6 +1,7 @@
 package com.radomir.drazic.birdwatchingapp.controller;
 
 import com.radomir.drazic.birdwatchingapp.dto.CreateObservationRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.ObservationRadiusFilterRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.ObservationDto;
 import com.radomir.drazic.birdwatchingapp.service.IObservationService;
 import jakarta.validation.Valid;
@@ -8,14 +9,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/observations")
@@ -48,6 +42,14 @@ public class ObservationController {
   @GetMapping("/observer/{observerId}")
   public ResponseEntity<List<ObservationDto>> getObservationsByObserver(@PathVariable Long observerId) {
     List<ObservationDto> observations = service.getAllObservationsByUser(observerId);
+
+    return ResponseEntity.status(HttpStatus.OK).body(observations);
+  }
+
+
+  @PostMapping("/observer/radius")
+  public ResponseEntity<List<ObservationDto>> getObservationsByObserver(@RequestBody ObservationRadiusFilterRequestDto request) {
+    List<ObservationDto> observations = service.getAllObservationsByRadius(request);
 
     return ResponseEntity.status(HttpStatus.OK).body(observations);
   }

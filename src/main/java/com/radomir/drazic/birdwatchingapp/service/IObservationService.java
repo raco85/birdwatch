@@ -11,7 +11,6 @@ public interface IObservationService {
 
  List<ObservationDto> getAllObservations();
  ObservationDto getObservationById(Long id);
- List<ObservationDto> getAllObservationsBySpecies(Long speciesId);
  List<ObservationDto> getAllObservationsByUser(Long observerId);
  List<ObservationDto> getAllObservationsByRadius(ObservationRadiusFilterRequestDto radiusFilterRequestDto);
  ObservationDto createObservation(CreateObservationRequestDto observationRequestDto);

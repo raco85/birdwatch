@@ -1,0 +1,62 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003
+      author: radrazic
+      changes:
+        - createTable:
+              tableName: individual_bird
+              columns:
+                - column:
+                    name: individual_bird_id
+                    type: BIGINT
+                    autoIncrement: true
+                    constraints:
+                      primaryKey: true
+                - column:
+                    name: age_class
+                    type: VARCHAR(45)
+                - column:
+                    name: gender
+                    type: VARCHAR(45)
+                - column:
+                    name: breeding_status
+                    type: VARCHAR(45)
+                - column:
+                    name: behaviour
+                    type: VARCHAR(45)
+                - column:
+                    name: habitat
+                    type: VARCHAR(45)
+                - column:
+                    name: social_context
+                    type: VARCHAR(45)
+                - column:
+                    name: migratory_status
+                    type: VARCHAR(45)
+                - column:
+                    name: physical_condition
+                    type: VARCHAR(45)
+                - column:
+                    name: observation_id
+                    type: BIGINT
+                - column:
+                    name: species_id
+                    type: BIGINT
+        - addForeignKeyConstraint:
+            baseTableName: individual_bird
+            baseColumnNames: species_id
+            referencedTableName: species
+            referencedColumnNames: species_id
+            constraintName: FK_Individual_Bird_Species
+        - addForeignKeyConstraint:
+            baseTableName: individual_bird
+            baseColumnNames: observation_id
+            referencedTableName: observation
+            referencedColumnNames: observation_id
+            constraintName: FK_Individual_Bird_Observation
+        - dropColumn:
+            tableName: observation
+            columns:
+              - column:
+                  name: species_id
+                  type: BIGINT

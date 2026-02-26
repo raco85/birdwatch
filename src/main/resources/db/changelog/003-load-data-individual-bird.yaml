@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: load-data-indiviudal_bird
+      author: radrazic
+      changes:
+        - loadUpdateData:
+            tableName: individual_bird
+            usePreparedStatements: false
+            separator: ;
+            relativeToChangelogFile: true
+            file: data/individual_bird.csv
+            encoding: UTF-8
+            primaryKey: individual_bird_id

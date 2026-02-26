@@ -8,6 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ObservationRepository extends JpaRepository<Observation, Long> {
 
-  List<Observation> findAllBySpeciesSpeciesId(Long id);
   List<Observation> findAllByObserverId(Long id);
 }

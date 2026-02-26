@@ -32,13 +32,6 @@ public class ObservationController {
     return ResponseEntity.status(HttpStatus.OK).body(observation);
   }
 
-  @GetMapping("/species/{speciesId}")
-  public ResponseEntity<List<ObservationDto>> getObservationsBySpecies(@PathVariable Long speciesId) {
-    List<ObservationDto> observations = service.getAllObservationsBySpecies(speciesId);
-
-    return ResponseEntity.status(HttpStatus.OK).body(observations);
-  }
-
   @GetMapping("/observer/{observerId}")
   public ResponseEntity<List<ObservationDto>> getObservationsByObserver(@PathVariable Long observerId) {
     List<ObservationDto> observations = service.getAllObservationsByUser(observerId);

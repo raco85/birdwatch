@@ -26,3 +26,9 @@ databaseChangeLog:
     - include:
         file: 002-load-data-species-images.yaml
         relativeToChangelogFile: true
+    - include:
+        file: 003-update-schema.yaml
+        relativeToChangelogFile: true
+    - include:
+        file: 003-load-data-individual-bird.yaml
+        relativeToChangelogFile: true

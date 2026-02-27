@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.service;
 
-import com.radomir.drazic.birdwatchingapp.dto.CreateGenusRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.CreateGenusRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.GenusDto;
 import java.util.List;
 import org.springframework.stereotype.Service;

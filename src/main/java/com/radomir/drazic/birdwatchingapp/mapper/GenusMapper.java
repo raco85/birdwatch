@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.mapper;
 
-import com.radomir.drazic.birdwatchingapp.dto.CreateGenusRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.CreateGenusRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.GenusDto;
 import com.radomir.drazic.birdwatchingapp.entity.Genus;
 import java.util.Collection;

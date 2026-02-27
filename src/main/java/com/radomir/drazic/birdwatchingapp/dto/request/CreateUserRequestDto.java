@@ -1,4 +1,4 @@
-package com.radomir.drazic.birdwatchingapp.dto;
+package com.radomir.drazic.birdwatchingapp.dto.request;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

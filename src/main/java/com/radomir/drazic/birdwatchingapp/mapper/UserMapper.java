@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.mapper;
 
-import com.radomir.drazic.birdwatchingapp.dto.CreateUserRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.CreateUserRequestDto;
 import com.radomir.drazic.birdwatchingapp.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.service;
 
-import com.radomir.drazic.birdwatchingapp.dto.CreateUserRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.CreateUserRequestDto;
 import com.radomir.drazic.birdwatchingapp.entity.User;
 import com.radomir.drazic.birdwatchingapp.mapper.UserMapper;
 import com.radomir.drazic.birdwatchingapp.repository.UserRepository;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
   private final UserRepository repository;
   private final UserMapper mapper;

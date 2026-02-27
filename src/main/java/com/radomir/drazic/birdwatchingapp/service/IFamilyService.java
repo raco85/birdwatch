@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.service;
 
-import com.radomir.drazic.birdwatchingapp.dto.CreateFamilyRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.CreateFamilyRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.FamilyDto;
 import java.util.List;
 import org.springframework.stereotype.Service;

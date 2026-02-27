@@ -1,7 +1,7 @@
 package com.radomir.drazic.birdwatchingapp.service;
 
-import com.radomir.drazic.birdwatchingapp.dto.CreateObservationRequestDto;
-import com.radomir.drazic.birdwatchingapp.dto.IndividualBirdRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.CreateObservationRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.IndividualBirdRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.request.ObservationRadiusFilterRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.ObservationDto;
 import com.radomir.drazic.birdwatchingapp.entity.IndividualBird;

@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.mapper;
 
-import com.radomir.drazic.birdwatchingapp.dto.CreateObservationRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.CreateObservationRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.ObservationDto;
 import com.radomir.drazic.birdwatchingapp.entity.Observation;
 import java.util.Collection;

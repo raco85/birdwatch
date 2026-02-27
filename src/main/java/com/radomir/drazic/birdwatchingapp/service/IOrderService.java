@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.service;
 
-import com.radomir.drazic.birdwatchingapp.dto.CreateOrderRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.CreateOrderRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.OrderDto;
 import java.util.List;
 import org.springframework.stereotype.Service;

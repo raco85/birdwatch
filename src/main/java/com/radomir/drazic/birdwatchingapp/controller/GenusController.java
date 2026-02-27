@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.controller;
 
-import com.radomir.drazic.birdwatchingapp.dto.CreateGenusRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.CreateGenusRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.GenusDto;
 import com.radomir.drazic.birdwatchingapp.service.IGenusService;
 import java.util.List;

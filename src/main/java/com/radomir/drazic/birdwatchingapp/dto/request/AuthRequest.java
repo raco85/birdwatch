@@ -1,4 +1,4 @@
-package com.radomir.drazic.birdwatchingapp.dto;
+package com.radomir.drazic.birdwatchingapp.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.controller;
 
-import com.radomir.drazic.birdwatchingapp.dto.CreateUserRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.CreateUserRequestDto;
 import com.radomir.drazic.birdwatchingapp.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.service;
 
-import com.radomir.drazic.birdwatchingapp.dto.CreateGenusRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.CreateGenusRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.GenusDto;
 import com.radomir.drazic.birdwatchingapp.entity.Family;
 import com.radomir.drazic.birdwatchingapp.entity.Genus;
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class GenusServiceImpl implements IGenusService{
+public class GenusServiceImpl implements IGenusService {
   private static final Logger logger = LoggerFactory.getLogger(GenusServiceImpl.class);
   private final GenusRepository repository;
   private final FamilyRepository familyRepository;

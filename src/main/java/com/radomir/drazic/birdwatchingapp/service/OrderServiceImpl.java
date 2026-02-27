@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.service;
 
-import com.radomir.drazic.birdwatchingapp.dto.CreateOrderRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.CreateOrderRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.OrderDto;
 import com.radomir.drazic.birdwatchingapp.entity.Order;
 import com.radomir.drazic.birdwatchingapp.exception.ResourceNotFoundException;

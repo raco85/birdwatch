@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.controller;
 
-import com.radomir.drazic.birdwatchingapp.dto.AuthRequest;
+import com.radomir.drazic.birdwatchingapp.dto.request.AuthRequest;
 import com.radomir.drazic.birdwatchingapp.dto.response.AuthResponse;
 import com.radomir.drazic.birdwatchingapp.service.JwtService;
 import com.radomir.drazic.birdwatchingapp.service.MyUserDetailsService;

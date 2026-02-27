@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.controller;
 
-import com.radomir.drazic.birdwatchingapp.dto.CreateOrderRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.CreateOrderRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.OrderDto;
 import com.radomir.drazic.birdwatchingapp.service.IOrderService;
 import java.util.List;

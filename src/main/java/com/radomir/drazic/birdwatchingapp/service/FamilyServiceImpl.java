@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.service;
 
-import com.radomir.drazic.birdwatchingapp.dto.CreateFamilyRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.CreateFamilyRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.FamilyDto;
 import com.radomir.drazic.birdwatchingapp.entity.Family;
 import com.radomir.drazic.birdwatchingapp.entity.Order;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class FamilyServiceImpl implements IFamilyService{
+public class FamilyServiceImpl implements IFamilyService {
   private static final Logger logger = LoggerFactory.getLogger(FamilyServiceImpl.class);
   private final FamilyRepository repository;
   private final OrderRepository orderRepository;

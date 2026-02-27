@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.mapper;
 
-import com.radomir.drazic.birdwatchingapp.dto.CreateFamilyRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.CreateFamilyRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.FamilyDto;
 import com.radomir.drazic.birdwatchingapp.entity.Family;
 import java.util.Collection;

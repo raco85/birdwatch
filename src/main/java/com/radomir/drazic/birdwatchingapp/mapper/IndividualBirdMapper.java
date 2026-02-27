@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.mapper;
 
-import com.radomir.drazic.birdwatchingapp.dto.IndividualBirdRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.IndividualBirdRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.IndividualBirdDto;
 import com.radomir.drazic.birdwatchingapp.entity.IndividualBird;
 import org.mapstruct.*;

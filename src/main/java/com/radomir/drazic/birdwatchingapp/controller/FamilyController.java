@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.controller;
 
-import com.radomir.drazic.birdwatchingapp.dto.CreateFamilyRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.CreateFamilyRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.FamilyDto;
 import com.radomir.drazic.birdwatchingapp.service.IFamilyService;
 import java.util.List;

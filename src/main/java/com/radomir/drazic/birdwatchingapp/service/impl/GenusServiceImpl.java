@@ -1,4 +1,4 @@
-package com.radomir.drazic.birdwatchingapp.service;
+package com.radomir.drazic.birdwatchingapp.service.impl;
 
 import com.radomir.drazic.birdwatchingapp.dto.request.CreateGenusRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.GenusDto;
@@ -10,6 +10,7 @@ import com.radomir.drazic.birdwatchingapp.mapper.GenusMapper;
 import com.radomir.drazic.birdwatchingapp.repository.FamilyRepository;
 import com.radomir.drazic.birdwatchingapp.repository.GenusRepository;
 import com.radomir.drazic.birdwatchingapp.repository.OrderRepository;
+import com.radomir.drazic.birdwatchingapp.service.IGenusService;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,9 +1,10 @@
-package com.radomir.drazic.birdwatchingapp.service;
+package com.radomir.drazic.birdwatchingapp.service.impl;
 
 import com.radomir.drazic.birdwatchingapp.dto.request.CreateUserRequestDto;
 import com.radomir.drazic.birdwatchingapp.entity.User;
 import com.radomir.drazic.birdwatchingapp.mapper.UserMapper;
 import com.radomir.drazic.birdwatchingapp.repository.UserRepository;
+import com.radomir.drazic.birdwatchingapp.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

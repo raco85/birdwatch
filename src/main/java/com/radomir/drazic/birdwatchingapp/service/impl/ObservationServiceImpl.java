@@ -1,4 +1,4 @@
-package com.radomir.drazic.birdwatchingapp.service;
+package com.radomir.drazic.birdwatchingapp.service.impl;
 
 import com.radomir.drazic.birdwatchingapp.dto.request.CreateObservationRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.request.IndividualBirdRequestDto;
@@ -20,6 +20,7 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import com.radomir.drazic.birdwatchingapp.service.IObservationService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

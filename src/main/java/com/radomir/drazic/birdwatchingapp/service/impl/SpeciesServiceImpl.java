@@ -1,4 +1,4 @@
-package com.radomir.drazic.birdwatchingapp.service;
+package com.radomir.drazic.birdwatchingapp.service.impl;
 
 import com.radomir.drazic.birdwatchingapp.dto.request.CreateSpeciesRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.SpeciesDto;
@@ -12,6 +12,7 @@ import com.radomir.drazic.birdwatchingapp.repository.FamilyRepository;
 import com.radomir.drazic.birdwatchingapp.repository.GenusRepository;
 import com.radomir.drazic.birdwatchingapp.repository.OrderRepository;
 import com.radomir.drazic.birdwatchingapp.repository.SpeciesRepository;
+import com.radomir.drazic.birdwatchingapp.service.ISpeciesService;
 import jakarta.transaction.Transactional;
 
 

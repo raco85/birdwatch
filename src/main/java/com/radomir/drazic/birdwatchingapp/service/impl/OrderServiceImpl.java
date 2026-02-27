@@ -1,4 +1,4 @@
-package com.radomir.drazic.birdwatchingapp.service;
+package com.radomir.drazic.birdwatchingapp.service.impl;
 
 import com.radomir.drazic.birdwatchingapp.dto.request.CreateOrderRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.OrderDto;
@@ -6,6 +6,7 @@ import com.radomir.drazic.birdwatchingapp.entity.Order;
 import com.radomir.drazic.birdwatchingapp.exception.ResourceNotFoundException;
 import com.radomir.drazic.birdwatchingapp.mapper.OrderMapper;
 import com.radomir.drazic.birdwatchingapp.repository.OrderRepository;
+import com.radomir.drazic.birdwatchingapp.service.IOrderService;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;

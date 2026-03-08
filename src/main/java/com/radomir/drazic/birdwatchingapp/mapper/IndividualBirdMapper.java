@@ -27,7 +27,8 @@ public interface IndividualBirdMapper {
     void updateEntityFromDto(IndividualBirdRequestDto dto, @MappingTarget IndividualBird entity);
 
     @Named("toUpperCase")
-    default String toUpperCase(String value) {
-        return value.toUpperCase();
+    default String toUpperCase(String value)
+    {
+        return value.replaceAll(" ", "_").toUpperCase();
     }
 }

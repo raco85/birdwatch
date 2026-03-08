@@ -1,6 +1,27 @@
 package com.radomir.drazic.birdwatchingapp.entity.enums;
 
 public enum BreedingStatus {
-    NOT_BREEDING, POSSIBLE_BREEDER, PROBABLE_BREEDER, CONFIRMED_BREEDER,
-    NEST_BUILDING, INCUBATING, FEEDING_YOUNG, UNKNOWN
+    NOT_BREEDING("Not breeding"), POSSIBLE_BREEDER("Possible breeder"),
+    PROBABLE_BREEDER("Probable breeder"), CONFIRMED_BREEDER("Confirmed breeder"),
+    NEST_BUILDING("Nest building"), INCUBATING("Incubating"),
+    FEEDING_YOUNG("Feeding young"), UNKNOWN("Unknown");
+
+    public final String label;
+
+    BreedingStatus(String label) {
+        this.label = label;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public static BreedingStatus getByLabel(String label) {
+        for (BreedingStatus breedingStatus : values()) {
+            if (breedingStatus.label.equalsIgnoreCase(label)) {
+                return breedingStatus;
+            }
+        }
+        return null;
+    }
 }

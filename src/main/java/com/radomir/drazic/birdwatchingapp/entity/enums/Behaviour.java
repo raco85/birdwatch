@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.entity.enums;
 
-public enum Behaviour {
+public enum Behaviour implements LabeledEnum {
     FLYING("Flying"), SOARING("Soaring") ,FORAGING("Foraging"), SINGING("Singing"),
     CALLING("Calling"), HUNTING("Hunting"), PERCHING("Perching"), NEST_BUILDING("Nest building"),
     INCUBATING("Incubating"), FEEDING_YOUNG("Feeding young"), RESTING("Resting"),
@@ -13,7 +13,7 @@ public enum Behaviour {
         this.label = label;
     }
 
-
+    @Override
     public String getLabel() {
         return label;
     }

@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.entity.enums;
 
-public enum Habitat {
+public enum Habitat implements  LabeledEnum {
     FOREST("Forest"), URBAN("Urban"), AGRICULTURAL("Agricultural"), WETLAND("Wetland"), RIVER("River"), LAKE("Lake"),
     COASTAL("Coastal"), GRASSLAND("Grassland"), MOUNTAIN("Mountain"), UNKNOWN("Unknown");
 
@@ -12,7 +12,7 @@ public enum Habitat {
         this.label = label;
     }
 
-
+    @Override
     public String getLabel() {
         return label;
     }

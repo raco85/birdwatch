@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.entity.enums;
 
-public enum AgeClass {
+public enum AgeClass implements LabeledEnum {
     NESTLING("Nestling"), FLEDGLING("Fledgling"), JUVENILE("Juvenile"), SUBADULT("Subadult"),
     ADULT("Adult"), UNKNOWN("Unknown");
 
@@ -11,7 +11,7 @@ public enum AgeClass {
         this.label = label;
     }
 
-
+    @Override
     public String getLabel() {
         return label;
     }

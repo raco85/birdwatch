@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.entity.enums;
 
-public enum SocialContext {
+public enum SocialContext implements LabeledEnum {
     SOLITARY("Solitary"), PAIR("Pair"), SMALL_GROUP("Small group"),
     LARGE_FLOCK("Large flock"), MIXED_SPECIES_FLOCK("Mixed species flock");
 
@@ -11,7 +11,7 @@ public enum SocialContext {
         this.label = label;
     }
 
-
+    @Override
     public String getLabel() {
         return label;
     }

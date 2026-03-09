@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.entity.enums;
 
-public enum Gender {
+public enum Gender implements LabeledEnum {
     MALE("Male"), FEMALE("Female"), UNKNOWN("Unknown");
 
 
@@ -10,7 +10,7 @@ public enum Gender {
         this.label = label;
     }
 
-
+    @Override
     public String getLabel() {
         return label;
     }

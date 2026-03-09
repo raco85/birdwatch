@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.entity.enums;
 
-public enum PhysicalCondition {
+public enum PhysicalCondition implements LabeledEnum {
     HEALTHY("Healthy"), INJURED("Injured"), SICK("Sick"), DEAD("Dead"), UNKNOWN("Unknown");
 
 
@@ -10,7 +10,7 @@ public enum PhysicalCondition {
         this.label = label;
     }
 
-
+    @Override
     public String getLabel() {
         return label;
     }

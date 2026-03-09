@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.entity.enums;
 
-public enum MigratoryStatus {
+public enum MigratoryStatus implements LabeledEnum {
     RESIDENT("Resident"), MIGRANT("Migrant"), PASSAGE("Passage"), WINTERING("Wintering"), UNKNOWN("Unknown");
 
 
@@ -10,7 +10,7 @@ public enum MigratoryStatus {
         this.label = label;
     }
 
-
+    @Override
     public String getLabel() {
         return label;
     }

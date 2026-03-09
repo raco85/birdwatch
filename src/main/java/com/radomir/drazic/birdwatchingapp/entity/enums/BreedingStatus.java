@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.entity.enums;
 
-public enum BreedingStatus {
+public enum BreedingStatus implements LabeledEnum {
     NOT_BREEDING("Not breeding"), POSSIBLE_BREEDER("Possible breeder"),
     PROBABLE_BREEDER("Probable breeder"), CONFIRMED_BREEDER("Confirmed breeder"),
     NEST_BUILDING("Nest building"), INCUBATING("Incubating"),
@@ -12,6 +12,7 @@ public enum BreedingStatus {
         this.label = label;
     }
 
+    @Override
     public String getLabel() {
         return label;
     }

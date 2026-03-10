@@ -1,6 +1,8 @@
 package com.radomir.drazic.birdwatchingapp.repository;
 
 import com.radomir.drazic.birdwatchingapp.entity.Observation;
+
+import java.util.Date;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -9,4 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface ObservationRepository extends JpaRepository<Observation, Long> {
 
   List<Observation> findAllByObserverId(Long id);
+  List<Observation> findByDateBetween(Date start, Date end);
 }

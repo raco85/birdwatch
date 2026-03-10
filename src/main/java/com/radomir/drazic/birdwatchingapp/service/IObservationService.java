@@ -1,6 +1,7 @@
 package com.radomir.drazic.birdwatchingapp.service;
 
 import com.radomir.drazic.birdwatchingapp.dto.request.CreateObservationRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.ObservationDateRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.request.ObservationRadiusFilterRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.ObservationDto;
 import java.util.List;
@@ -13,6 +14,7 @@ public interface IObservationService {
  ObservationDto getObservationById(Long id);
  List<ObservationDto> getAllObservationsByUser(Long observerId);
  List<ObservationDto> getAllObservationsByRadius(ObservationRadiusFilterRequestDto radiusFilterRequestDto);
+ List<ObservationDto> getAllObservationsByDate(ObservationDateRequestDto observationDateRequestDto);
  ObservationDto createObservation(CreateObservationRequestDto observationRequestDto);
  ObservationDto updateObservation(Long id, CreateObservationRequestDto observationRequestDto);
  void deleteObservation(Long id);

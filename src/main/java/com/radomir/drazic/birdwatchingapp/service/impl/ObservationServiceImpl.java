@@ -70,6 +70,13 @@ public class ObservationServiceImpl implements IObservationService {
   }
 
   @Override
+  public List<ObservationDto> getAllObservationsByDate(ObservationDateRequestDto request) {
+    List<Observation> observations = repository.findByDateBetween(request.startingDate(), request.endingDate());
+
+    return observations.stream().map(observationMapper::toObservationDto).collect(Collectors.toList());
+  }
+
+  @Override
   public ObservationDto createObservation(CreateObservationRequestDto observationRequestDto) {
     Observation observationToSave = observationMapper
         .toEntityFromCreateObservationRequestDto(observationRequestDto);

@@ -1,6 +1,7 @@
 package com.radomir.drazic.birdwatchingapp.controller;
 
 import com.radomir.drazic.birdwatchingapp.dto.request.CreateObservationRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.ObservationDateRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.request.ObservationRadiusFilterRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.ObservationDto;
 import com.radomir.drazic.birdwatchingapp.service.IObservationService;
@@ -39,10 +40,16 @@ public class ObservationController {
     return ResponseEntity.status(HttpStatus.OK).body(observations);
   }
 
-
   @PostMapping("/observer/radius")
   public ResponseEntity<List<ObservationDto>> getObservationsByObserver(@RequestBody ObservationRadiusFilterRequestDto request) {
     List<ObservationDto> observations = service.getAllObservationsByRadius(request);
+
+    return ResponseEntity.status(HttpStatus.OK).body(observations);
+  }
+
+  @GetMapping("/date")
+  public ResponseEntity<List<ObservationDto>> getObservationsByDate(@RequestBody ObservationDateRequestDto request) {
+    List<ObservationDto> observations = service.getAllObservationsByDate(request);
 
     return ResponseEntity.status(HttpStatus.OK).body(observations);
   }

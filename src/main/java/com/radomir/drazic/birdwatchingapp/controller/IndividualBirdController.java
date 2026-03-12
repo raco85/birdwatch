@@ -1,6 +1,6 @@
 package com.radomir.drazic.birdwatchingapp.controller;
 
-import com.radomir.drazic.birdwatchingapp.dto.request.IndividualBirdRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.IndividualBirdStatsRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.IndividualBirdDto;
 import com.radomir.drazic.birdwatchingapp.service.IndividualBirdService;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ public class IndividualBirdController {
 
 
     @PostMapping
-    public ResponseEntity<List<IndividualBirdDto>> searchIndividualBirds(@RequestBody IndividualBirdRequestDto request) {
+    public ResponseEntity<List<IndividualBirdDto>> searchIndividualBirds(@RequestBody IndividualBirdStatsRequestDto request) {
         List<IndividualBirdDto> birds = service.searchIndividualBirds(request);
 
         return ResponseEntity.status(HttpStatus.OK).body(birds);

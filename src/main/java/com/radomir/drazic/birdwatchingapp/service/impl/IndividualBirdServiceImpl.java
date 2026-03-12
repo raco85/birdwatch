@@ -1,6 +1,7 @@
 package com.radomir.drazic.birdwatchingapp.service.impl;
 
-import com.radomir.drazic.birdwatchingapp.dto.request.IndividualBirdRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.IndividualBirdStatsRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.ObservationRadiusFilterRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.IndividualBirdDto;
 import com.radomir.drazic.birdwatchingapp.entity.IndividualBird;
 import com.radomir.drazic.birdwatchingapp.entity.enums.*;
@@ -23,7 +24,7 @@ public class IndividualBirdServiceImpl implements IndividualBirdService {
 
 
     @Override
-    public List<IndividualBirdDto> searchIndividualBirds(IndividualBirdRequestDto request) {
+    public List<IndividualBirdDto> searchIndividualBirds(IndividualBirdStatsRequestDto request) {
 
         Specification<IndividualBird> spec = Specification
                 .where(IndividualBirdSpecification.byGender(Gender.getByLabel(request.gender())))
@@ -34,7 +35,9 @@ public class IndividualBirdServiceImpl implements IndividualBirdService {
                 .and(IndividualBirdSpecification.bySocialContext(SocialContext.getByLabel(request.socialContext())))
                 .and(IndividualBirdSpecification.byMigratoryStatus(MigratoryStatus.getByLabel(request.migratoryStatus())))
                 .and(IndividualBirdSpecification.byPhysicalCondition(PhysicalCondition.getByLabel(request.physicalCondition())))
-                .and(IndividualBirdSpecification.bySpecies(request.speciesId()));
+                .and(IndividualBirdSpecification.bySpecies(request.speciesId()))
+                .and(IndividualBirdSpecification.byDateBetween(request.startingDate(), request.endingDate()));
+
         List<IndividualBird> individualBirds = individualBirdRepository.findAll(spec);
 
         return individualBirds.stream().map(mapper::toIndividualBirdDto).toList();

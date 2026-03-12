@@ -1,8 +1,10 @@
 package com.radomir.drazic.birdwatchingapp.controller;
 
 import com.radomir.drazic.birdwatchingapp.dto.request.CreateObservationRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.IndividualBirdStatsRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.request.ObservationDateRequestDto;
 import com.radomir.drazic.birdwatchingapp.dto.request.ObservationRadiusFilterRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.response.IndividualBirdsStatsDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.ObservationDto;
 import com.radomir.drazic.birdwatchingapp.service.IObservationService;
 import jakarta.validation.Valid;
@@ -52,6 +54,13 @@ public class ObservationController {
     List<ObservationDto> observations = service.getAllObservationsByDate(request);
 
     return ResponseEntity.status(HttpStatus.OK).body(observations);
+  }
+
+  @GetMapping("/stats")
+  public ResponseEntity<IndividualBirdsStatsDto> getBirdStatsInAGivenRadius(@RequestBody IndividualBirdStatsRequestDto request) {
+    IndividualBirdsStatsDto stats = service.getBirdStatsInAGivenRadius(request);
+
+    return ResponseEntity.status(HttpStatus.OK).body(stats);
   }
 
   @PostMapping

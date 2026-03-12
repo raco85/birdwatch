@@ -5,6 +5,8 @@ import com.radomir.drazic.birdwatchingapp.entity.enums.*;
 import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 
+import java.util.Date;
+
 @AllArgsConstructor
 public class IndividualBirdSpecification {
 
@@ -65,5 +67,10 @@ public class IndividualBirdSpecification {
 
     public static Specification<IndividualBird> bySpecies(Long speciesId) {
         return (root, query, cb) -> cb.equal(root.get("species").get("speciesId"), speciesId);
+    }
+
+    public static Specification<IndividualBird> byDateBetween(Date startDate, Date endDate) {
+        if(startDate == null || endDate == null) return null;
+        return (root, query, cb) -> cb.between(root.get("observation").get("date"), startDate, endDate);
     }
 }

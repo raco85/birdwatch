@@ -1,8 +1,7 @@
 package com.radomir.drazic.birdwatchingapp.service.impl;
 
-import com.radomir.drazic.birdwatchingapp.dto.request.CreateObservationRequestDto;
-import com.radomir.drazic.birdwatchingapp.dto.request.IndividualBirdRequestDto;
-import com.radomir.drazic.birdwatchingapp.dto.request.ObservationRadiusFilterRequestDto;
+import com.radomir.drazic.birdwatchingapp.dto.request.*;
+import com.radomir.drazic.birdwatchingapp.dto.response.IndividualBirdsStatsDto;
 import com.radomir.drazic.birdwatchingapp.dto.response.ObservationDto;
 import com.radomir.drazic.birdwatchingapp.entity.IndividualBird;
 import com.radomir.drazic.birdwatchingapp.entity.Observation;
@@ -16,6 +15,7 @@ import com.radomir.drazic.birdwatchingapp.repository.SpeciesRepository;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -62,11 +62,10 @@ public class ObservationServiceImpl implements IObservationService {
   public List<ObservationDto> getAllObservationsByRadius(ObservationRadiusFilterRequestDto radiusFilterRequestDto) {
     List<Observation> observations = repository.findAll();
 
-    List<ObservationDto> observationDtos = observations.stream().filter(observation ->
-            haversineFormula(observation.getLatitude(), observation.getLongitude(),
-                    radiusFilterRequestDto.latitude(), radiusFilterRequestDto.longitude()) <= radiusFilterRequestDto.distance()
-    ).map(observationMapper::toObservationDto).toList();
-      return observationDtos;
+      return observations.stream().filter(observation ->
+              haversineFormula(observation.getLatitude(), observation.getLongitude(),
+                      radiusFilterRequestDto.latitude(), radiusFilterRequestDto.longitude()) <= radiusFilterRequestDto.distance()
+      ).map(observationMapper::toObservationDto).toList();
   }
 
   @Override
@@ -131,6 +130,37 @@ public class ObservationServiceImpl implements IObservationService {
   }
 
   @Override
+  @Transactional
+  public IndividualBirdsStatsDto getBirdStatsInAGivenRadius(IndividualBirdStatsRequestDto request) {
+
+    findSpecieSById(request.speciesId());
+
+    List<Observation> observations = repository.findAll();
+    List<Observation> observationsByRadius = observations.stream().filter(observation ->
+            haversineFormula(observation.getLatitude(), observation.getLongitude(),
+                    request.latitude(), request.longitude()) <= request.distance()).toList();
+
+    List<Observation> observationsByDateAndRadius = observationsByRadius.stream().filter(observation ->
+            observation.getDate().toInstant().isAfter(request.startingDate().toInstant()) &&
+                    observation.getDate().toInstant().isBefore(request.endingDate().toInstant())).toList();
+
+    List<IndividualBird> birdsToFilter = observationsByDateAndRadius.stream().flatMap(observation -> observation.getBirds()
+            .stream().filter(bird -> Objects.equals(bird.getSpecies().getSpeciesId(), request.speciesId()))).toList();
+
+    List<IndividualBird> filteredBirds = filterBirds(request, birdsToFilter);
+
+    int numberOfBirdsInARadius = birdsToFilter.size();
+    int numberOfBirdsByAFilter = filteredBirds.size();
+
+    logger.info("Number of birds in a radius {}", numberOfBirdsInARadius);
+    logger.info("Number of birds in a filter {}", numberOfBirdsByAFilter);
+
+    double percentage = ((double) Math.round(((float) numberOfBirdsByAFilter / numberOfBirdsInARadius * 100) * 100) /100);
+
+    return new IndividualBirdsStatsDto(numberOfBirdsInARadius, numberOfBirdsByAFilter, percentage);
+  }
+
+  @Override
   public void deleteObservation(Long id) {
     findObservationById(id);
     repository.deleteById(id);
@@ -154,6 +184,15 @@ public class ObservationServiceImpl implements IObservationService {
    }
   }
 
+  private void findSpecieSById(Long id) {
+    speciesRepository.findById(id).orElseThrow(
+            () -> {
+              logger.info("Species with an id {} not found!", id);
+                return new ResourceNotFoundException("Species with an id " + id + " not found");
+            }
+    );
+  }
+
   private Double haversineFormula(Double latObs, Double lonObs, Double latCenter, Double lonCenter) {
 
     double latObsRadians = Math.toRadians(latObs);
@@ -168,5 +207,19 @@ public class ObservationServiceImpl implements IObservationService {
     Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
     return EARTH_RADIUS * c;
+  }
+
+  private List<IndividualBird> filterBirds(IndividualBirdStatsRequestDto request, List<IndividualBird> birds) {
+
+      return birds.stream().filter(bird ->
+        (request.ageClass() == null || request.ageClass().equals(bird.getAgeClass().getLabel())) &&
+                (request.gender() == null || request.gender().equals(bird.getGender().getLabel())) &&
+                (request.breedingStatus() == null || request.breedingStatus().equals(bird.getBreedingStatus().getLabel())) &&
+                (request.behaviour() == null || request.behaviour().equals(bird.getBehaviour().getLabel())) &&
+                (request.habitat() == null || request.habitat().equals(bird.getHabitat().getLabel())) &&
+                (request.socialContext() == null || request.socialContext().equals(bird.getSocialContext().getLabel())) &&
+                (request.migratoryStatus() == null || request.migratoryStatus().equals(bird.getMigratoryStatus().getLabel())) &&
+                (request.physicalCondition() == null || request.physicalCondition().equals(bird.getPhysicalCondition().getLabel()))
+      ).toList();
   }
 }
